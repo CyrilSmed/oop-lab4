@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace oop_lab4._1.Core
+namespace oop_lab4_1.Core
 {
-    internal class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         private Action<object> _execute;
         private Func<object, bool> _canExecute;
