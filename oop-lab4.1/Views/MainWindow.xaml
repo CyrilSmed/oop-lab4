@@ -7,19 +7,42 @@
         xmlns:viewModel="clr-namespace:oop_lab4._1.ViewModels"
         mc:Ignorable="d" 
         Height="600" Width="1000">
-    <Window.DataContext>
-        <viewModel:MainWindowViewModel/>
-    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="240"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <TextBlock Text="Paint Box" FontSize="26" Margin="20,20,0,0"/>
+        <Border Background="{StaticResource TabBackground}" CornerRadius="8" Grid.Row="1" 
+                    BorderThickness="1" BorderBrush="{StaticResource Border}"
+                    MinHeight="200" Margin="20,0,20,20">
+            <Canvas x:Name="treeCanvas" SizeChanged="treeCanvas_SizeChanged">
+                <Image x:Name="treeCanvasImage" Loaded="treeCanvas_Loaded"/>
+            </Canvas>
+        </Border>
 
+        <Border Background="{StaticResource TabBackground}" CornerRadius="8" Grid.Column="1" Grid.Row="1" 
+                    BorderThickness="1" BorderBrush="{StaticResource Border}"
+                    MinHeight="200" Margin="0,0,20,20" Padding="10">
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap">
+                - Press RMB to create a circle
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap">
+                - Press LMB on a circle to select it
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap">
+                - Press LMB while holding Ctrl to select multiple circles
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap">
+                - Press Del to delete selected circles
+                </TextBlock>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
