@@ -21,11 +21,12 @@ namespace oop_lab4_1.ViewModels
 
         public void AddCircle(int posX, int posY)
         {
-            ShapeContainer.Append(new CCircle(posX, posY));
+            CCircle circle = new CCircle(posX, posY);
+            circle.Selected = true;
+            ShapeContainer.Append(circle);
         }
-        public bool SelectCircleAt(int posX, int posY)
+        public void SelectCircleAt(int posX, int posY)
         {
-            bool oneOrMoreSelected = false;
             for (ShapeContainer.First();
                  ShapeContainer.IsEOL() == false;
                  ShapeContainer.Next())
@@ -33,10 +34,29 @@ namespace oop_lab4_1.ViewModels
                 if(ShapeContainer.GetCurrent().IfInside(posX, posY))
                 {
                     ShapeContainer.GetCurrent().SwitchSelection();
-                    oneOrMoreSelected = true;
                 }
             }
-            return oneOrMoreSelected;
+        }
+        public void DeselectAll()
+        {
+            for (ShapeContainer.First();
+                 ShapeContainer.IsEOL() == false;
+                 ShapeContainer.Next())
+            {
+                ShapeContainer.GetCurrent().Selected = false;
+            }
+        }
+        public void DeleteSelected()
+        {
+            for (ShapeContainer.First();
+                 ShapeContainer.IsEOL() == false;
+                 ShapeContainer.Next())
+            {
+                if(ShapeContainer.GetCurrent().Selected)
+                {
+                    ShapeContainer.DeleteCurrent();
+                }
+            }
         }
     }
 }

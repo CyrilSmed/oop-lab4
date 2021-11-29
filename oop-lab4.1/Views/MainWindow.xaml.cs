@@ -29,7 +29,7 @@ namespace oop_lab4_1
         {
             ViewModel = new MainWindowViewModel(this);
             DataContext = ViewModel;
-            defaultCircleColor = getRecourceAsColor("GreyForeground");
+            defaultCircleColor = getRecourceAsColor("Foreground");
             selectedCircleColor = getRecourceAsColor("Accent");
 
             InitializeComponent();
@@ -42,9 +42,9 @@ namespace oop_lab4_1
 
         private void canvasImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Debug.WriteLine($"{(int)e.GetPosition(canvas).X} {(int)e.GetPosition(canvas).Y}");
             if (e.LeftButton == MouseButtonState.Pressed)
             {
+                ViewModel.DeselectAll();
                 ViewModel.AddCircle(
                     (int)e.GetPosition(canvas).X, 
                     (int)e.GetPosition(canvas).Y);
@@ -52,12 +52,22 @@ namespace oop_lab4_1
             }
             else if (e.RightButton == MouseButtonState.Pressed)
             {
-                if(ViewModel.SelectCircleAt(
-                    (int)e.GetPosition(canvas).X,
-                    (int)e.GetPosition(canvas).Y))
+                if(Keyboard.IsKeyDown(Key.LeftCtrl) == false)
                 {
-                    DrawShapes();
+                    ViewModel.DeselectAll();
                 }
+                ViewModel.SelectCircleAt(
+                    (int)e.GetPosition(canvas).X,
+                    (int)e.GetPosition(canvas).Y);
+                DrawShapes();
+            }
+        }
+        private void window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                ViewModel.DeleteSelected();
+                DrawShapes();
             }
         }
 
@@ -109,3 +119,17 @@ namespace oop_lab4_1
         }
     }
 }
+
+//In Windows Forms/GDI, the graphics API is an immediate mode graphics API. Each time the window is refreshed/invalidated,
+//you explicitly draw the contents using Graphics.
+
+//In WPF, however, things work differently.You rarely ever directly draw - instead, it's a retained mode graphics API.
+//You tell WPF where you want the objects, and it takes care of the drawing for you.
+
+//The best way to think of it is, in Windows Forms, you'd say "Draw a line". And you repeat this every time you need
+//to "redraw" since the screen is invalidated.
+
+//In WPF, instead, you say "I want a line from X1 to Y1. I want a line from X2 to Y2." WPF then decides when
+//and how to draw it for you.
+
+//This is done by placing the shapes on a Canvas, and then letting WPF do all of the hard work.

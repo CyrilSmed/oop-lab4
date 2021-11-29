@@ -25,7 +25,7 @@ namespace oop_lab4_1.Models
             System.Drawing.Pen defaultPen,
             System.Drawing.Pen selectedPen)
         {
-            Debug.WriteLine("CCircle.DrawItself()");
+            //Debug.WriteLine("CCircle.DrawItself()");
             gfx.DrawEllipse(Selected ? selectedPen : defaultPen,
                 x - radius,
                 y - radius,

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:oop_lab4._1"
         mc:Ignorable="d" 
-        Height="600" Width="1000">
+        Height="600" Width="1000"
+        KeyUp="window_KeyUp">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,8 +21,11 @@
         <Border Background="{StaticResource TabBackground}" CornerRadius="8" Grid.Row="1" 
                     BorderThickness="1" BorderBrush="{StaticResource Border}"
                     MinHeight="200" Margin="20,0,20,20">
-            <Canvas x:Name="canvas">
-                <Image x:Name="canvasImage" Loaded="canvasImage_Loaded" MouseDown="canvasImage_MouseDown"/>
+            <Canvas x:Name="canvas" >
+                <Image x:Name="canvasImage" 
+                       Loaded="canvasImage_Loaded" 
+                       MouseDown="canvasImage_MouseDown"
+                       />
             </Canvas>
         </Border>
 
@@ -30,13 +34,13 @@
                     MinHeight="200" Margin="0,0,20,20" Padding="10">
             <StackPanel>
                 <TextBlock TextWrapping="Wrap">
-                - Press RMB to create a circle
+                - Press right mouse button to create a circle
                 </TextBlock>
                 <TextBlock TextWrapping="Wrap">
-                - Press LMB on a circle to select it
+                - Press left mouse button on a circle to select it
                 </TextBlock>
                 <TextBlock TextWrapping="Wrap">
-                - Press LMB while holding Ctrl to select multiple circles
+                - Press left mouse button while holding Ctrl to select multiple circles
                 </TextBlock>
                 <TextBlock TextWrapping="Wrap">
                 - Press Del to delete selected circles
