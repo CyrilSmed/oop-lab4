@@ -20,8 +20,8 @@
         <Border Background="{StaticResource TabBackground}" CornerRadius="8" Grid.Row="1" 
                     BorderThickness="1" BorderBrush="{StaticResource Border}"
                     MinHeight="200" Margin="20,0,20,20">
-            <Canvas x:Name="canvas" MouseDown="canvas_MouseDown">
-                <Image x:Name="canvasImage" Loaded="canvasImage_Loaded"/>
+            <Canvas x:Name="canvas">
+                <Image x:Name="canvasImage" Loaded="canvasImage_Loaded" MouseDown="canvasImage_MouseDown"/>
             </Canvas>
         </Border>
 

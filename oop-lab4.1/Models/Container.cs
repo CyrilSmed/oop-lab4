@@ -14,21 +14,21 @@ namespace oop_lab4_1.Models
 
         public Container()
         {
-            Console.WriteLine("Debug: Container - default constructor");
+            //Console.WriteLine("Debug: Container - default constructor");
             elements = new T[0];
         }
         public Container(Container<T> container)
         {
-            Console.WriteLine("Debug: Container - copy constructor");
+            //Console.WriteLine("Debug: Container - copy constructor");
             this.elements = container.elements;
         }
         ~Container()
         {
-            Console.WriteLine("Debug: Container - destructor");
+            //Console.WriteLine("Debug: Container - destructor");
         }
         public void Append(T element)
         {
-            Console.WriteLine("Debug: Container.Append()");
+            //Console.WriteLine("Debug: Container.Append()");
 
             if (lastElIndex == elements.Length - 1)
             {
@@ -39,7 +39,7 @@ namespace oop_lab4_1.Models
         }
         public void Insert(T element)
         {
-            Console.WriteLine("Debug: Container.Insert()");
+            //Console.WriteLine("Debug: Container.Insert()");
 
             if (lastElIndex == elements.Length - 1)
             {
@@ -54,7 +54,7 @@ namespace oop_lab4_1.Models
         }
         private void ExpandArrayAndCopyContents()
         {
-            T[] newArrayExpanded = new T[elements.Length + 10]; // Probably not smart
+            T[] newArrayExpanded = new T[elements.Length + 10]; 
             for (int i = 0; i < elements.Length; i++)
             {
                 newArrayExpanded[i] = elements[i];
@@ -64,7 +64,7 @@ namespace oop_lab4_1.Models
         private bool shiftedByDeletion = false;
         public void DeleteCurrent()
         {
-            Console.WriteLine("Debug: Container.DeleteCurrent()");
+            //Console.WriteLine("Debug: Container.DeleteCurrent()");
             if (elements.Length != 0)
             {
                 for (int i = curElIndex; i < lastElIndex; i++)
@@ -79,12 +79,12 @@ namespace oop_lab4_1.Models
         }
         public void First()
         {
-            Console.WriteLine("Debug: Container.First()");
+            //Console.WriteLine("Debug: Container.First()");
             curElIndex = 0;
         }
         public void Next()
         {
-            Console.WriteLine("Debug: Container.Next()");
+            //Console.WriteLine("Debug: Container.Next()");
             if (shiftedByDeletion == false)
             {
                 curElIndex += 1;
@@ -93,12 +93,12 @@ namespace oop_lab4_1.Models
         }
         public T GetCurrent()
         {
-            Console.WriteLine("Debug: Container.GetCurrent()");
+            //Console.WriteLine("Debug: Container.GetCurrent()");
             return elements[curElIndex];
         }
         public bool IsEOL()
         {
-            Console.WriteLine("Debug: Container.IsEOL()");
+            //Console.WriteLine("Debug: Container.IsEOL()");
             if (curElIndex > lastElIndex)
                 return true;
 

@@ -8,13 +8,39 @@ using System.Threading.Tasks;
 
 namespace oop_lab4_1.Models
 {
-    public class CCircle : CShape
+    public class CCircle
     {
+        private int x, y;
+        private const int radius = 15;
+        public bool Selected { get; set; }
+            
+        public CCircle(int posX, int posY)
+        {
+            x = posX;
+            y = posY;
+        }
 
-        public override void DrawItself(Graphics gfx)
+        public void DrawItself(
+            Graphics gfx,
+            System.Drawing.Pen defaultPen,
+            System.Drawing.Pen selectedPen)
         {
             Debug.WriteLine("CCircle.DrawItself()");
-            throw new NotImplementedException();
+            gfx.DrawEllipse(Selected ? selectedPen : defaultPen,
+                x - radius,
+                y - radius,
+                radius * 2,
+                radius * 2);
+        }
+
+        public bool IfInside(int posX, int posY)
+        {
+            return Math.Sqrt((x - posX) * (x - posX) + (y - posY) * (y - posY)) <= radius;
+        }
+
+        public void SwitchSelection()
+        {
+            Selected = Selected ? false : true;
         }
     }
 }

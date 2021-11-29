@@ -78,7 +78,6 @@
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Models\CCircle.cs" />
     <Compile Include="Models\Container.cs" />
-    <Compile Include="Models\CShape.cs" />
     <Compile Include="ViewModels\IMainWindowView.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

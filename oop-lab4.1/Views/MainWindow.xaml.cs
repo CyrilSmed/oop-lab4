@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -36,18 +37,27 @@ namespace oop_lab4_1
 
         private void canvasImage_Loaded(object sender, RoutedEventArgs e)
         {
-
+            DrawShapes();
         }
 
-        private void canvas_MouseDown(object sender, MouseButtonEventArgs e)
+        private void canvasImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.LeftButton == MouseButtonState.Pressed)
+            Debug.WriteLine($"{(int)e.GetPosition(canvas).X} {(int)e.GetPosition(canvas).Y}");
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
-
+                ViewModel.AddCircle(
+                    (int)e.GetPosition(canvas).X, 
+                    (int)e.GetPosition(canvas).Y);
+                DrawShapes();
             }
             else if (e.RightButton == MouseButtonState.Pressed)
             {
-
+                if(ViewModel.SelectCircleAt(
+                    (int)e.GetPosition(canvas).X,
+                    (int)e.GetPosition(canvas).Y))
+                {
+                    DrawShapes();
+                }
             }
         }
 
@@ -57,11 +67,18 @@ namespace oop_lab4_1
         {
             using (var bmp = new Bitmap((int)canvas.ActualWidth, (int)canvas.ActualHeight))
             using (var gfx = Graphics.FromImage(bmp))
-            using (var defaultPen = new System.Drawing.Pen(defaultCircleColor, 3))
-            using (var selectedPen = new System.Drawing.Pen(selectedCircleColor, 3))
+            using (var defaultPen = new System.Drawing.Pen(defaultCircleColor, 5))
+            using (var selectedPen = new System.Drawing.Pen(selectedCircleColor, 5))
             {
                 gfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 gfx.Clear(System.Drawing.Color.Transparent);
+                for(ViewModel.ShapeContainer.First(); 
+                    ViewModel.ShapeContainer.IsEOL() == false; 
+                    ViewModel.ShapeContainer.Next())
+                {
+                    ViewModel.ShapeContainer.GetCurrent().DrawItself(gfx, defaultPen, selectedPen);
+                }
+                canvasImage.Source = BmpImageFromBmp(bmp);
             }
         }
         private BitmapImage BmpImageFromBmp(Bitmap bmp)
