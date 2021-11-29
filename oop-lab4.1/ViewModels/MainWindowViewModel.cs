@@ -10,18 +10,13 @@ namespace oop_lab4_1.ViewModels
 {
     public class MainWindowViewModel : ObservableObject
     {
-        public RelayCommand CommandExample { get; set; }
-
         public IMainWindowView View { get; set; }
-
         public MainWindowViewModel(IMainWindowView view)
         {
             View = view;
-            CommandExample = new RelayCommand(o =>
-           {
-
-           });
         }
 
+        Container<CShape> _container;
+        Container<CShape> Container { get { return _container; } }
     }
 }
