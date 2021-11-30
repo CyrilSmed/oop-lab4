@@ -53,10 +53,10 @@ namespace oop_lab4_2
         {
             if(e.Key == Key.Enter)
             {
-                int result = int.MinValue;
                 TextBox curTextBox = (TextBox)sender;
-                int.TryParse(curTextBox.Text, out result);
-                if(result != int.MinValue)
+
+                int result;
+                if(int.TryParse(curTextBox.Text, out result))
                 {
                     switch (curTextBox.Tag)
                     {

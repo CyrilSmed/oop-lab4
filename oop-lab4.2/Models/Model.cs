@@ -48,6 +48,5 @@ namespace oop_lab4_2.Models
                 modelUpdated?.Invoke(this, EventArgs.Empty);
             }
         }
-
     }
 }
